@@ -21,3 +21,60 @@
     @apply cursor-none;
   }
 }
+
+/* Auth */
+.auth-container {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+ /* or use hex value if needed */
+}
+
+@media (min-width: 640px) {
+  .auth-container {
+    flex-direction: row;
+  }
+}
+
+.auth-form {
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+  height: 100%;
+  min-height: 100vh;
+  flex: 1 1 0%;
+  align-items: center;
+  background-image: url('/path/to/your/bg-pattern.png'); /* <-- Replace with your pattern */
+  background-size: cover;
+  background-position: top;
+  padding-left: 1.25rem; /* px-5 */
+  padding-right: 1.25rem;
+  padding-top: 2.5rem; /* py-10 */
+  padding-bottom: 2.5rem;
+}
+
+.auth-box {
+  background-image: linear-gradient(to bottom, var(--tw-gradient-stops)); /* Assuming 'gradient-vertical' is a vertical gradient */
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  max-width: 36rem; /* max-w-xl */
+  flex-direction: column;
+  gap: 1.5rem; /* gap-6 */
+  border-radius: 0.5rem; /* rounded-lg */
+  padding: 2.5rem; /* p-10 */
+}
+
+.auth-illustration {
+  position: sticky;
+  top: 0;
+  height: 10rem; /* h-40 */
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .auth-illustration {
+    height: 100vh; /* sm:h-screen */
+    flex: 1 1 0%;
+  }
+}
