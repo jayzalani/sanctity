@@ -4,7 +4,7 @@ import { db } from "@/database/drizzle";
 import { comments, users } from "@/database/schema";
 import { desc, eq, and, isNull } from "drizzle-orm";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     const session = await auth();
     if (!session) {
