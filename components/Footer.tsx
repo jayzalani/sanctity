@@ -45,21 +45,21 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="w-full py-8 flex flex-col items-center justify-center bg-black text-white">
-      <h2 className="animated-footer-text text-center text-2xl md:text-4xl font-bold rotating-word">
-        <span className="d-inline-flex">Jay Zalani </span>{" "}
-        <span className="d-inline-flex">YOUR</span>{" COMMENTS "}
-        <span className="d-inline-flex">MADE •</span>{" "}
-        <span className="d-inline-flex">WITH</span>{" "}
-        <span className="d-inline-flex">💖 •</span>{" "}
-        <span className="d-inline-flex">JOIN</span>{" "}
-        <span className="d-inline-flex">THE</span>{" "}
-        <span className="d-inline-flex">VIBE •</span>{" "}
-        <span className="d-inline-flex">COMMENT</span>{" "}
-        <span className="d-inline-flex">LOUD •</span>{" "}
-        <span className="d-inline-flex">Genc</span>
+    <footer className="w-full h-60 py-8 flex flex-col items-center justify-center bg-black text-white">
+      <h2 className="animated-footer-text text-center text-2xl md:text-4xl font-bold ">
+        <span className="d-inline-flex rotating-word">Made by  </span>{" "}
+        <span className="d-inline-flex rotating-word">JAY ZALANI</span>{" "}
+        <span className="d-inline-flex rotating-word">With •</span>{" "}
+        <span className="d-inline-flex rotating-word">💖</span>{" "}
+        <span className="d-inline-flex rotating-word">•</span>{" "}
+        <span className="d-inline-flex rotating-word">JOIN</span>{" "}
+        <span className="d-inline-flex rotating-word">THE</span>{" "}
+        <span className="d-inline-flex rotating-word">VIBE •</span>{" "}
+        <span className="d-inline-flex rotating-word">COMMENT</span>{" "}
+        <span className="d-inline-flex rotating-word">LOUD •</span>{" "}
+        <span className="d-inline-flex rotating-word">GenZ⚡</span>
       </h2>
-      <p className="mt-4 text-sm text-gray-400">© 2025 Genc Comments. Stay Loud, Stay Proud.</p>
+      <p className="mt-4 text-sm text-gray-400">© 2025 GenZ Comments. Stay Loud, Stay Proud.</p>
     </footer>
   );
 };
