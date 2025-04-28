@@ -5,7 +5,7 @@ import { signOut } from "@/auth";
 import { Button } from "@/components/ui/button";
 import { Session } from "next-auth";
 
-const Header = ({session}: {session:Session}) => {
+const Header = ({session }: {session:Session}) => {
   return (
     <header className="my-10 m-[150px] flex justify-between">
       <Link href="/" className="flex items-center gap-2">

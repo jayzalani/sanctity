@@ -8,8 +8,7 @@ import { signIn } from "@/auth";
 import { headers } from "next/headers";
 import ratelimit from "@/lib/ratelimit";
 import { redirect } from "next/navigation";
-// import { workflowClient } from "@/lib/workflow";
-import config from "@/lib/cofig";
+
 
 export const signInWithCredentials = async (
   params: Pick<AuthCredentials, "email" | "password">,

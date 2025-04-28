@@ -2,9 +2,6 @@ import { redirect } from "next/navigation";
 import { ReactNode } from "react";
 import {auth } from "@/auth"
 import Header from "@/components/Header";
-import CommentSection from "@/components/CommentSection";
-import HomePageButton from "@/components/HomePageButton";
-import ScrollingText from "@/components/ScrollingText";
 import Footer from "@/components/Footer";
 
 const Layout = async ({ children }: { children: ReactNode }) => {
@@ -15,7 +12,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
       <Header session = {session}/>
       
         {children}
-       <Footer/>
+       
           
     </main>
   );

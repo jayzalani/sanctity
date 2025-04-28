@@ -1,11 +1,9 @@
-// app/api/comments/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { db } from "@/database/drizzle";
 import { comments, users } from "@/database/schema";
 import { desc, eq, and, isNull } from "drizzle-orm";
 
-// Get all top-level comments (those without parent)
 export async function GET(req: NextRequest) {
   try {
     const session = await auth();
@@ -40,16 +38,15 @@ export async function GET(req: NextRequest) {
   }
 }
 
-// Create a new comment
 export async function POST(req: NextRequest) {
   try {
     const session = await auth();
-    if (!session) {
+    if (!session || !session.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const { content, parentId } = await req.json();
-    
+
     if (!content || content.trim() === "") {
       return NextResponse.json(
         { error: "Comment content cannot be empty" },
@@ -60,9 +57,9 @@ export async function POST(req: NextRequest) {
     const newComment = await db
       .insert(comments)
       .values({
-        content,
-        authorId: session.user.id,
-        parentId: parentId || null,
+        content: content,
+        authorId: session.user.id as string,  // ✨ force TypeScript: "session.user.id" IS string
+        parentId: parentId ?? null,            // ✨ Use null if undefined
       })
       .returning();
 
