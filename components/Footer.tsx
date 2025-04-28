@@ -46,9 +46,9 @@ const Footer = () => {
 
   return (
     <footer className="w-full py-8 flex flex-col items-center justify-center bg-black text-white">
-      <h2 className="animated-footer-text text-center text-2xl md:text-4xl font-bold">
-        <span className="d-inline-flex">Jay</span>{" Zalani"}
-        <span className="d-inline-flex rotating-word">YOUR</span>{" COMMENTS "}
+      <h2 className="animated-footer-text text-center text-2xl md:text-4xl font-bold rotating-word">
+        <span className="d-inline-flex">Jay Zalani </span>{" "}
+        <span className="d-inline-flex">YOUR</span>{" COMMENTS "}
         <span className="d-inline-flex">MADE •</span>{" "}
         <span className="d-inline-flex">WITH</span>{" "}
         <span className="d-inline-flex">💖 •</span>{" "}
