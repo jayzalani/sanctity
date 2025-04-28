@@ -1,3 +1,4 @@
+// components/Header.tsx
 import Link from "next/link";
 import Image from "next/image";
 import { signOut } from "@/auth";
@@ -7,12 +8,17 @@ import { Session } from "next-auth";
 const Header = ({session}: {session:Session}) => {
   return (
     <header className="my-10 m-[150px] flex justify-between">
-    <Link href="/" className="flex items-center gap-2">
+      <Link href="/" className="flex items-center gap-2">
         <Image src="/logo.png" alt="logo" width={40} height={40} />
         <span className="text-2xl font-extrabold text-amber-400 font-jetbrains-semiBold">COMMENTS</span>
       </Link>
 
       <ul className="flex flex-row items-center gap-8">
+        <li>
+          <Link href="/comments">
+            <span className="text-xl font-jetbrains-semiBold hover:text-amber-400">Comments</span>
+          </Link>
+        </li>
         <li>
           <form
             action={async () => {

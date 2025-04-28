@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "../components/CustomCursor";
+import { SessionProvider } from "next-auth/react";
 
 
 const  jetbrains= JetBrains_Mono({
@@ -24,10 +25,11 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${jetbrains.variable} antialiased`}
-      >
+      ><SessionProvider>
         <CustomCursor />
         {children}
-       
+        </SessionProvider>
+    
       </body>
     </html>
   );

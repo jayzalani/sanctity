@@ -1,13 +1,14 @@
 import {
-    varchar,
-    uuid,
-    integer,
-    text,
-    pgTable,
-    date,
-    pgEnum,
-    timestamp,
-  } from "drizzle-orm/pg-core";
+  varchar,
+  uuid,
+  integer,
+  text,
+  pgTable,
+  date,
+  pgEnum,
+  timestamp,
+  boolean,
+} from "drizzle-orm/pg-core";
   
   export const STATUS_ENUM = pgEnum("status", [
     "PENDING",
@@ -29,4 +30,19 @@ import {
     }).defaultNow(),
   });
   
-  
+  export const comments = pgTable("comments", {
+    id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
+    content: text("content").notNull(),
+    authorId: uuid("author_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    parentId: uuid("parent_id"),
+    deleted: boolean("deleted").default(false),
+    restorable: boolean("restorable").default(true),
+    createdAt: timestamp("created_at", {
+      withTimezone: true,
+    }).defaultNow(),
+    updatedAt: timestamp("updated_at", {
+      withTimezone: true,
+    }).defaultNow(),
+  });
