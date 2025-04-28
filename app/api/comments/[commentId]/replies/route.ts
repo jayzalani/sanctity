@@ -5,7 +5,6 @@ import { comments, users } from "@/database/schema";
 import { desc, eq, and } from "drizzle-orm";
 
 export async function GET(
-  req: NextRequest,
   { params }: { params: { commentId: string } }
 ) {
   try {
