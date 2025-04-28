@@ -122,7 +122,7 @@ const AuthForm = <T extends FieldValues>({
       </Form>
 
       <p className="text-center text-base font-medium">
-        {isSignIn ? "New to BookWise? " : "Already have an account? "}
+        {isSignIn ? "New to Comments😏? " : "Already have an account? "}
 
         <Link
           href={isSignIn ? "/sign-up" : "/sign-in"}
