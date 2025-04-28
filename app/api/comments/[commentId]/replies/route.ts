@@ -4,14 +4,18 @@ import { db } from "@/database/drizzle";
 import { comments, users } from "@/database/schema";
 import { desc, eq, and } from "drizzle-orm";
 
-export async function GET(req: NextRequest, { params }: { params: { commentId: string } }) {
+// The correct parameter format for Next.js route handlers
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { commentId: string } }
+) {
   try {
     const session = await auth();
     if (!session) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { commentId } = params; // params is now destructured from the second argument
+    const commentId = params.commentId;
 
     const replies = await db
       .select({
