@@ -10,6 +10,7 @@ import {
   UseFormReturn,
 } from "react-hook-form";
 import { ZodType } from "zod";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -24,7 +25,6 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { FIELD_NAMES, FIELD_TYPES } from "@/constants";
 
-import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 
 interface Props<T extends FieldValues> {
@@ -53,19 +53,18 @@ const AuthForm = <T extends FieldValues>({
     const result = await onSubmit(data);
 
     if (result.success) {
-      toast({
-        title: "Success",
-        description: isSignIn
-          ? "You have successfully signed in."
-          : "You have successfully signed up.",
+      // Using sonner toast instead of the custom hook
+      toast.success(isSignIn
+        ? "You have successfully signed in."
+        : "You have successfully signed up.", {
+        description: "Redirecting you to the homepage..."
       });
 
       router.push("/");
     } else {
-      toast({
-        title: `Error ${isSignIn ? "signing in" : "signing up"}`,
-        description: result.error ?? "An error occurred.",
-        variant: "destructive",
+      // Using sonner toast for errors
+      toast.error(`Error ${isSignIn ? "signing in" : "signing up"}`, {
+        description: result.error ?? "An error occurred."
       });
     }
   };
@@ -116,7 +115,7 @@ const AuthForm = <T extends FieldValues>({
             />
           ))}
 
-          <Button  type="submit" className="bg-amber-900 text-amber-100 ">
+          <Button type="submit" className="bg-amber-900 text-amber-100 ">
             {isSignIn ? "Sign In" : "Sign Up"}
           </Button>
         </form>
