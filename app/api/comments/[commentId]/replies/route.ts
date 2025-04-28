@@ -4,10 +4,12 @@ import { db } from "@/database/drizzle";
 import { comments, users } from "@/database/schema";
 import { desc, eq, and } from "drizzle-orm";
 
-// Correct parameter structure for dynamic route segments
+// Define the Params type as a Promise
+type Params = Promise<{ commentId: string }>;
+
 export async function GET(
   request: NextRequest,
-  context: { params: { commentId: string } }
+  { params }: { params: Params }
 ) {
   try {
     const session = await auth();
@@ -15,7 +17,8 @@ export async function GET(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const commentId = context.params.commentId;
+    // Await the params Promise to get the commentId
+    const { commentId } = await params;
 
     const replies = await db
       .select({
