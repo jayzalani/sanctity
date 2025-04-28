@@ -4,16 +4,14 @@ import { db } from "@/database/drizzle";
 import { comments, users } from "@/database/schema";
 import { desc, eq, and } from "drizzle-orm";
 
-export async function GET(
-  { params }: { params: { commentId: string } }
-) {
+export async function GET(req: NextRequest, { params }: { params: { commentId: string } }) {
   try {
     const session = await auth();
     if (!session) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { commentId } = params;
+    const { commentId } = params; // params is now destructured from the second argument
 
     const replies = await db
       .select({
@@ -36,9 +34,6 @@ export async function GET(
     return NextResponse.json(replies);
   } catch (error) {
     console.error("Error fetching replies:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch replies" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to fetch replies" }, { status: 500 });
   }
 }
