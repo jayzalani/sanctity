@@ -4,10 +4,13 @@ import { db } from "@/database/drizzle";
 import { comments } from "@/database/schema";
 import { eq, and } from "drizzle-orm";
 
+// Define the Params type as a Promise
+type Params = Promise<{ commentId: string }>;
+
 // Edit a comment (within 15 minutes of creation)
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { commentId: string } }
+  { params }: { params: Params }
 ) {
   try {
     const session = await auth();
@@ -15,7 +18,7 @@ export async function PUT(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { commentId } = params;
+    const { commentId } = await params;
     const { content } = await req.json();
     
     if (!content || content.trim() === "") {
@@ -81,7 +84,7 @@ export async function PUT(
 // Delete a comment (soft delete)
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { commentId: string } }
+  { params }: { params: Params }
 ) {
   try {
     const session = await auth();
@@ -89,7 +92,7 @@ export async function DELETE(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     
-    const { commentId } = params;
+    const { commentId } = await params;
     
     // Check if user owns the comment
     const [comment] = await db
